@@ -1,0 +1,35 @@
+{% extends 'dashboard/base.html' %}
+
+{% block content %}
+<h2 class="text-xl font-semibold mb-4">Recent Deployments</h2>
+<table class="min-w-full bg-white rounded-lg overflow-hidden shadow">
+  <thead class="bg-gray-200 text-left">
+    <tr>
+      <th class="py-2 px-4">Name</th>
+      <th class="py-2 px-4">Version</th>
+      <th class="py-2 px-4">Status</th>
+      <th class="py-2 px-4">Triggered At</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for deploy in deployments %}
+    <tr class="border-t">
+      <td class="py-2 px-4">{{ deploy.name }}</td>
+      <td class="py-2 px-4">{{ deploy.version }}</td>
+      <td class="py-2 px-4">
+        <span class="px-2 py-1 rounded-full text-white {{
+          'bg-yellow-500' if deploy.status == 'Pending' else
+          'bg-blue-500' if deploy.status == 'In Progress' else
+          'bg-green-500' if deploy.status == 'Successful' else
+          'bg-red-500'
+        }}">
+          {{ deploy.status }}
+        </span>
+      </td>
+      <td class="py-2 px-4">{{ deploy.triggered_at|date:"Y-m-d H:i" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
+

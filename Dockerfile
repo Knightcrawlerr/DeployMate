@@ -12,6 +12,10 @@ WORKDIR /app
 # Copy app code and dependencies
 COPY requirements.txt /app/
 COPY Deploymate /app/
+COPY entrypoint.sh /app/
+
+# Make entrypoint script executable 
+RUN chmod +x /app/entrypoint.sh
 
 # Install dependencies
 RUN apt-get update && \
@@ -25,9 +29,4 @@ RUN apt-get update && \
 EXPOSE 8000
 
 # Run migrations and create superuser automatically, then start the server
-CMD ["sh", "-c", "\
-    python3 manage.py migrate && \
-    python3 manage.py createsuperuser --noinput || true && \
-    python3 manage.py runserver 0.0.0.0:8000 \
-"]
-
+ENTRYPOINT ["/app/entrypoint.sh"]

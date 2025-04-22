@@ -1,0 +1,35 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+env/
+ENV/
+venv/
+env.bak/
+venv.bak/
+
+# Environment variables
+.env
+
+# SQLite database
+db.sqlite3
+
+# Django collectstatic output
+/static/
+
+# IDEs/editors
+.vscode/
+.idea/
+.DS_Store
+
+# Git files
+.git
+.gitignore
+
+# Logs
+*.log
+

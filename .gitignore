@@ -8,4 +8,4 @@ env.bak/
 venv.bak/
 
 # Test SQLite DB
-db.sqlite3
+*.sqlite3
